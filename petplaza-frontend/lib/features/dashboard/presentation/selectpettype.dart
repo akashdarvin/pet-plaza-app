@@ -38,9 +38,6 @@ class _SelectPetTypePageState extends State<SelectPetTypePage> {
   ];
 
   void _onPetTap(String name) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('You tapped on $name!')),
-    );
     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> Adoptpets(petType: name)));
   }
 

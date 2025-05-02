@@ -43,6 +43,12 @@ class _CreateaccState extends State<Createacc> {
               SizedBox(height: 5,),
 
               TextFormField(
+                keyboardType: TextInputType.number,
+                maxLength: 10,
+                
+                decoration: InputDecoration(
+                  counterText: ''
+                ),
               ),
               SizedBox(height: 20,),
               Text("Email",style: theme.textTheme.bodyMedium,),
@@ -55,13 +61,6 @@ class _CreateaccState extends State<Createacc> {
               SizedBox(height: 5,),
 
               TextFormField(
-                obscureText: true,
-                keyboardType: TextInputType.number,
-                maxLength: 6,
-                
-                decoration: InputDecoration(
-                  counterText: ''
-                ),
               ),
               SizedBox(height: 10,),
               Row(

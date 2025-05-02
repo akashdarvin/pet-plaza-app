@@ -8,6 +8,8 @@ class Donatepets extends StatefulWidget {
 }
 
 class _DonatepetsState extends State<Donatepets> {
+  final TextEditingController petTypeController = TextEditingController();
+
   final TextEditingController petNameController = TextEditingController();
 
   final TextEditingController petAgeController = TextEditingController();
@@ -23,8 +25,11 @@ class _DonatepetsState extends State<Donatepets> {
   final TextEditingController OwnerAddressController = TextEditingController();
 
   String selectedCode = '+91';
+  String selectedCategory = 'Category';
   // Default country code
   final List<String> countryCodes = ['+91', '+86', '+351', '+971', '+92'];
+
+  final List<String> petCategory = ['Dog', 'Cat', 'Bird', 'Fish', 'Rabbit'];
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +54,41 @@ class _DonatepetsState extends State<Donatepets> {
             ),
             //pet details
             TextField(
+              controller: petTypeController,
+              decoration: InputDecoration(
+                labelText: "Pet Type",
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
+                suffixIcon: PopupMenuButton<String>(
+                  onSelected: (value) {
+                    setState(() {
+                      selectedCode = value;
+                    });
+                  },
+                  itemBuilder: (context) => petCategory
+                      .map((code) => PopupMenuItem(
+                            value: code,
+                            child: Text(code,style: TextStyle(fontSize: 18),),
+                          ))
+                      .toList(),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                    child: Text(
+                      selectedCode,
+                      style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+
+            TextField(
               controller: petNameController,
               decoration: InputDecoration(
                 labelText: "Pet Name",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
               ),
             ),
             SizedBox(
@@ -64,7 +100,7 @@ class _DonatepetsState extends State<Donatepets> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: "Pet Age",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
               ),
             ),
             SizedBox(
@@ -75,7 +111,7 @@ class _DonatepetsState extends State<Donatepets> {
               controller: petWeightController,
               decoration: InputDecoration(
                 labelText: "Pet Weight",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
               ),
             ),
             SizedBox(
@@ -86,7 +122,7 @@ class _DonatepetsState extends State<Donatepets> {
               controller: petBreedController,
               decoration: InputDecoration(
                 labelText: "Pet Breed",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
               ),
             ),
             SizedBox(
@@ -105,9 +141,9 @@ class _DonatepetsState extends State<Donatepets> {
               controller: ownerNameController,
               decoration: InputDecoration(
                 labelText: "Owner Name",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
                 hintText: 'Enter Your Name',
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.2)),
+                hintStyle: TextStyle(color: Colors.deepPurpleAccent.withOpacity(0.2)),
               ),
             ),
             SizedBox(
@@ -121,7 +157,7 @@ class _DonatepetsState extends State<Donatepets> {
               decoration: InputDecoration(
                 counterText: '',
                 labelText: "Contact Number",
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
                 prefixIcon: PopupMenuButton<String>(
                   onSelected: (value) {
                     setState(() {
@@ -138,12 +174,12 @@ class _DonatepetsState extends State<Donatepets> {
                     padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                     child: Text(
                       selectedCode,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 18),
                     ),
                   ),
                 ),
                 hintText: 'Enter phone number',
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.2)),
+                hintStyle: TextStyle(color: Colors.deepPurpleAccent.withOpacity(0.2)),
               ),
             ),
             SizedBox(
@@ -155,8 +191,8 @@ class _DonatepetsState extends State<Donatepets> {
               decoration: InputDecoration(
                 labelText: "Address",
                 hintText: "building no. / flat no.",
-                labelStyle: TextStyle(color: Colors.white),
-                hintStyle: TextStyle(color: Colors.white.withOpacity(0.2)),
+                labelStyle: TextStyle(color: Colors.deepPurpleAccent),
+                hintStyle: TextStyle(color: Colors.deepPurpleAccent.withOpacity(0.2)),
               ),
             ),
             SizedBox(

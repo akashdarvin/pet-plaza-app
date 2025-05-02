@@ -132,75 +132,75 @@ class Profile extends StatelessWidget {
                 ListTile(
                   leading: Icon(
                     Icons.person,
-                    color: Colors.white,
+                    color: Colors.deepPurpleAccent,
                   ),
                   title: Text(
                     'Account',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent  ),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.notifications,color: Colors.white,),
+                  leading: Icon(Icons.notifications,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Notifications',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.lock,color: Colors.white,),
+                  leading: Icon(Icons.lock,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Privacy',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.pets,color: Colors.white,),
+                  leading: Icon(Icons.pets,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'My Adoptions',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.favorite,color: Colors.white,),
+                  leading: Icon(Icons.favorite,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'My Donations',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.payments,color: Colors.white,),
+                  leading: Icon(Icons.payments,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Payments',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.laptop,color: Colors.white,),
+                  leading: Icon(Icons.laptop,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Remove Ads',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.brush,color: Colors.white,),
+                  leading: Icon(Icons.brush,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Theme',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Icon(Icons.help,color: Colors.white,),
+                  leading: Icon(Icons.help,color: Colors.deepPurpleAccent,),
                   title: Text(
                     'Help & Support',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onTap: () {},
                 ),SizedBox(height: 20,),

@@ -1,19 +1,20 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:petplaza/features/dashboard/presentation/accessoriespage.dart';
 import 'package:petplaza/features/dashboard/presentation/donatepets.dart';
+import 'package:petplaza/features/dashboard/presentation/savedpets.dart';
 import 'package:petplaza/features/dashboard/presentation/selectpettype.dart';
 import 'package:petplaza/features/dashboard/presentation/profile.dart';
 
 class Homescreen extends StatelessWidget {
   final File profilePic;
-  
+
   // Accept profilePic as a parameter
-   Homescreen({super.key, required this.profilePic});
-   
+  Homescreen({super.key, required this.profilePic});
+
   @override
   Widget build(BuildContext context) {
-
     final theme = Theme.of(context);
 
     // Carousel items: List of Widgets with images and text
@@ -47,19 +48,46 @@ class Homescreen extends StatelessWidget {
               backgroundColor: WidgetStatePropertyAll(Colors.transparent),
               shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
-                side: BorderSide(
-                  width: 1,color: Colors.deepPurpleAccent
-                )
-              ))
+                side: BorderSide(width: 1, color: Colors.deepPurpleAccent),
+              )),
             ),
-            onPressed: (){},
-           icon: Icon(Icons.notifications)),
+            onPressed: () {
+              showDialog(
+                context: context,
+                barrierDismissible: true,
+                builder: (BuildContext context) {
+                  return Dialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    backgroundColor: Colors.white,
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      width: 300,
+                      height: 200,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text("Notifications",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                          SizedBox(height: 10),
+                          Text("You have no new notifications."),
+                          // Add your notification items here
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+            icon: Icon(Icons.notifications),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18),
             child: InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.push(context,
-                 MaterialPageRoute(builder: (context)=>Profile()));
+                    MaterialPageRoute(builder: (context) => Profile()));
               },
               child: CircleAvatar(
                 backgroundImage: FileImage(profilePic),
@@ -84,7 +112,7 @@ class Homescreen extends StatelessWidget {
             ),
             // Carousel Slider
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
               child: CarouselSlider(
                 items: carouselItems,
                 options: CarouselOptions(
@@ -97,10 +125,10 @@ class Homescreen extends StatelessWidget {
                 ),
               ),
             ),
-        
+
             // GridView with Different Icons and Button Functionality
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: GridView.builder(
                 physics:
                     const NeverScrollableScrollPhysics(), // Disable Grid Scroll
@@ -127,13 +155,13 @@ class Homescreen extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SelectPetTypePage()));
+                                  builder: (context) => Savedpets()));
                           break;
                         case 2:
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SelectPetTypePage()));
+                                  builder: (context) => Accessoriespage()));
                           break;
                         case 3:
                           Navigator.push(
