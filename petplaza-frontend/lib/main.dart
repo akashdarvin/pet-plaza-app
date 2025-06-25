@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:petplaza/core/injection/dependency_injection.dart';
+import 'package:petplaza/features/dashboard/bloc/get_cart_items/get_cart_items_bloc.dart';
+import 'package:petplaza/features/dashboard/bloc/pet_items/pet_items_bloc.dart';
 import 'package:petplaza/features/register/bloc/register_user/register_user_bloc.dart';
 import 'package:petplaza/features/splash/presentation/initial_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/injection/dependency_injection.dart' as di;
 
 import 'core/theme/app_theme.dart';
+import 'features/dashboard/bloc/add_to_cart/add_to_cart_bloc.dart';
 import 'features/dashboard/bloc/adoption_request/adoption_requests_bloc.dart';
 import 'features/dashboard/bloc/pet/pet_bloc.dart';
+import 'features/dashboard/bloc/place_order/place_order_bloc.dart';
+import 'features/dashboard/bloc/order_history/order_history_bloc.dart';
 import 'features/dashboard/bloc/user_adoption_requests/user_adoption_requests_bloc.dart';
 import 'features/login/bloc/bloc/login_bloc.dart';
 import 'features/login/cubit/login_cubit.dart';
@@ -60,6 +65,31 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) {
             return di.sl<UserAdoptionRequestsBloc>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return di.sl<PetItemBloc>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return di.sl<AddToCartBloc>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return di.sl<GetCartItemsBloc>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return di.sl<PlaceOrderBloc>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return di.sl<OrderHistoryBloc>();
           },
         ),
       ],

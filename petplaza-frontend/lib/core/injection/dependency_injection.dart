@@ -1,18 +1,28 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:petplaza/features/dashboard/bloc/get_cart_items/get_cart_items_bloc.dart';
 import 'package:petplaza/features/dashboard/domain/user_adoption_requests/user_adoption_request_repo.dart' show UserAdoptionRequestRepository;
 
+import '../../features/dashboard/bloc/add_to_cart/add_to_cart_bloc.dart';
 import '../../features/dashboard/bloc/adoption_request/adoption_requests_bloc.dart';
 import '../../features/dashboard/bloc/pet/pet_bloc.dart';
+import '../../features/dashboard/bloc/pet_items/pet_items_bloc.dart';
+import '../../features/dashboard/bloc/update_cart_item/update_cart_item_bloc.dart';
 import '../../features/dashboard/bloc/user_adoption_requests/user_adoption_requests_bloc.dart';
 import '../../features/dashboard/data/adoption_request/adoption_request_datasource.dart';
 import '../../features/dashboard/data/adoption_request/adoption_request_repo_impl.dart';
+import '../../features/dashboard/data/cart/cart_datasource.dart';
+import '../../features/dashboard/data/cart/cart_to_repo_impl.dart';
 import '../../features/dashboard/data/pet/pet_datasource.dart';
 import '../../features/dashboard/data/pet/pet_repo_impl.dart';
+import '../../features/dashboard/data/pet_items/pet_item_datasource.dart';
+import '../../features/dashboard/data/pet_items/pet_items_repo_impl.dart';
 import '../../features/dashboard/data/user_adoption_requests/user_adoption_request_datasource.dart';
 import '../../features/dashboard/data/user_adoption_requests/user_adoption_request_repo_impl.dart';
 import '../../features/dashboard/domain/adoption_request/adoption_request_repo.dart';
+import '../../features/dashboard/domain/cart/cart_repo.dart';
 import '../../features/dashboard/domain/pet/pet_repo.dart';
+import '../../features/dashboard/domain/pet_items/pet_items_repo.dart';
 import '../../features/login/bloc/bloc/login_bloc.dart';
 import '../../features/login/cubit/login_cubit.dart';
 import '../../features/login/data/login_datasource.dart';
@@ -24,6 +34,15 @@ import '../../features/register/data/register_user_datasource.dart';
 import '../../features/register/data/register_user_repo_impl.dart';
 import '../../features/register/domain/register_user.dart';
 import '../../features/register/domain/register_user_repo.dart';
+import '../../features/dashboard/bloc/delete_cart_item/delete_cart_item_bloc.dart';
+import '../../features/dashboard/bloc/place_order/place_order_bloc.dart';
+import '../../features/dashboard/data/order/order_datasource.dart';
+import '../../features/dashboard/data/order/order_repo_impl.dart';
+import '../../features/dashboard/domain/order/order_repo.dart';
+import '../../features/dashboard/bloc/order_history/order_history_bloc.dart';
+import '../../features/dashboard/data/order_history/order_history_datasource.dart';
+import '../../features/dashboard/data/order_history/order_history_repo_impl.dart';
+import '../../features/dashboard/domain/order_history/order_history_repo.dart';
 
 final sl = GetIt.instance;
 
@@ -101,4 +120,45 @@ Future<void> initDependencies() async {
   // User Adoption Request Bloc
   sl.registerFactory(() => UserAdoptionRequestsBloc(userAdoptionRequestRepository: sl()));
 
+
+  sl.registerFactory(() => PetItemBloc(sl()));
+
+  // Repository
+  sl.registerLazySingleton<PetItemRepository>(() => PetItemRepositoryImpl(sl()));
+
+  // Data Source
+  sl.registerLazySingleton<PetItemRemoteDataSource>(() => PetItemRemoteDataSourceImpl(sl()));
+
+
+
+  sl.registerLazySingleton<CartRemoteDataSource>(
+      () => CartRemoteDataSourceImpl(sl()));
+  sl.registerLazySingleton<CartRepository>(
+      () => CartRepositoryImpl(sl()));
+  sl.registerFactory(() => AddToCartBloc(sl()));
+  sl.registerFactory(()=> GetCartItemsBloc(sl()));
+
+  // Bloc
+  sl.registerFactory(
+    () => DeleteCartItemBloc(sl()),
+  );
+  sl.registerFactory(() => UpdateCartItemBloc(sl()));
+
+  // Order Dependencies
+  sl.registerLazySingleton<OrderRemoteDataSource>(
+    () => OrderRemoteDataSourceImpl(client: sl()),
+  );
+  sl.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(remoteDataSource: sl()),
+  );
+  sl.registerFactory(() => PlaceOrderBloc(orderRepository: sl()));
+
+  // Order History Dependencies
+  sl.registerLazySingleton<OrderHistoryRemoteDataSource>(
+    () => OrderHistoryRemoteDataSourceImpl(client: sl()),
+  );
+  sl.registerLazySingleton<OrderHistoryRepository>(
+    () => OrderHistoryRepositoryImpl(remoteDataSource: sl()),
+  );
+  sl.registerFactory(() => OrderHistoryBloc(orderHistoryRepository: sl()));
 }
